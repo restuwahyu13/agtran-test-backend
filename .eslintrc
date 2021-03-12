@@ -1,0 +1,17 @@
+{
+	"parserOptions": {
+		"ecmaVersion": 2020,
+		"sourceType": "module"
+	},
+	"parser": "@typescript-eslint/parser",
+	"extends": ["plugin:@typescript-eslint/recommended", "plugin:prettier/recommended", "standard"],
+	"rules": {
+		"no-tabs": 0,
+		"indent": 0,
+		"dot-notation": 0,
+		"no-async-promise-executor": 0
+	},
+	"env": {
+		"node": true
+	}
+}
