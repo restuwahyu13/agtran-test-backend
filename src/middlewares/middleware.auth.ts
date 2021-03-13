@@ -4,7 +4,7 @@ import { verifySignAccessToken } from '../utils/util.jwt'
 export const authJwt = () => (req: Request, res: Response, next: NextFunction): Response<any> => {
 	const tokenHeader: string = req.headers.authorization
 	if (tokenHeader) {
-		const decodedToken: string | any = verifySignAccessToken()(tokenHeader.split('Bearer ')[1])
+		const decodedToken: string = verifySignAccessToken()(tokenHeader.split('Bearer ')[1])
 
 		if (decodedToken) {
 			req.user = decodedToken
