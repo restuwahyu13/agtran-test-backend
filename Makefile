@@ -7,15 +7,8 @@ NPX := npx
 
 DOCKER := docker
 
-dbd:
-ifdef v
-	${DOCKER} build -f Dockerfile.dev -t express/payment-gateway:${v} .
-endif
-
-dbp:
-ifdef v
-	${DOCKER} build -f Dockerfile.prod -t express/payment-gateway:${v} .
-endif
+db:
+	${DOCKER} build -f Dockerfile -t express/rest-api:${v} .
 
 
 ##########################################
@@ -23,14 +16,10 @@ endif
 ##########################################
 
 cpup:
-ifdef env
-	${DOCKER}-compose -f docker-compose.${env}.yml up --build -d
-endif
+	${DOCKER}-compose -f docker-compose.yml up --build -d
 
 cpdown:
-ifdef env
-	${DOCKER}-compose -f docker-compose.${env}.yml down
-endif
+	${DOCKER}-compose -f docker-compose.yml down
 
 #################################
 ### APPLICATION BUILD AND DEV
@@ -110,7 +99,7 @@ lfx.b:
 bprod: npm.i lfx.i compiler.i
 
 npm.i:
-	${NPM} install
+	${NPM} install --silent --only=prod && npm audit fix
 
 lfx.i:
 	${NPM} run lint:fix
