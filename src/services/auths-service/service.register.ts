@@ -13,15 +13,17 @@ export const serviceRegister = (payload: IUser): Promise<Record<string, any>> =>
 					message: `register new account failed email already taken ${payload.email}, please try again`
 				})
 			} else {
-				const addNewUser: UsersDTO = await knex<UsersDTO>('users').insert({
-					firstName: payload.firstName,
-					lastName: payload.lastName,
-					email: payload.email,
-					password: payload.password,
-					birdDate: new Date(payload.birdDate),
-					icNumber: payload.icNumber,
-					createdAt: new Date()
-				})
+				const addNewUser: UsersDTO = await knex<UsersDTO>('users')
+					.insert({
+						firstName: payload.firstName,
+						lastName: payload.lastName,
+						email: payload.email,
+						password: payload.password,
+						birdDate: new Date(payload.birdDate),
+						icNumber: payload.icNumber,
+						createdAt: new Date()
+					})
+					.returning('*')
 
 				if (!addNewUser) {
 					resolve({
@@ -31,7 +33,8 @@ export const serviceRegister = (payload: IUser): Promise<Record<string, any>> =>
 				} else {
 					resolve({
 						status: 201,
-						message: `register new account successfully, please check your email ${payload.email}`
+						message: `register new account successfully, please check your email ${payload.email}`,
+						data: addNewUser
 					})
 				}
 			}

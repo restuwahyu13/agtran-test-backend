@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { serviceResultUser } from '../../services/profiles-service/service.result'
+import { service } from '../../services'
 import { expressValidator } from '../../utils/util.validator'
 
 export const resultUserController = async (req: Request, res: Response): Promise<Response<any>> => {
@@ -12,7 +12,7 @@ export const resultUserController = async (req: Request, res: Response): Promise
 			errors
 		})
 	} else {
-		const { status, message, data } = await serviceResultUser({ id: req.params.id })
+		const { status, message, data } = await service.serviceResultUser({ id: req.params.id })
 
 		if (status >= 400) {
 			return res.status(status).json({
