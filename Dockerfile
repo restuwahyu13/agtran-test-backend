@@ -7,7 +7,8 @@ RUN apt-get update \
   && apt-get clean \
   &&  apk add make
 
-COPY package*.json ./usr/src/app
+COPY package*.json \
+  Makefile /usr/src/app/
 
 COPY . ./usr.src/app
 
