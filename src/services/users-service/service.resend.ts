@@ -15,7 +15,8 @@ export const serviceResend = (payload: IUser): Promise<Record<string, any>> => {
 			} else {
 				resolve({
 					status: 200,
-					message: `resend new activation token successfully please check your email ${payload.email}`
+					message: `resend new activation token successfully please check your email ${payload.email}`,
+					data: checkUser
 				})
 			}
 		} catch (error) {

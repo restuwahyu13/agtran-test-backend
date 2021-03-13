@@ -6,8 +6,8 @@ export const serviceReset = (payload: IUser): Promise<Record<string, any>> => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const updateNewPassword: number = await knex<UsersDTO>('users')
+				.where({ userId: payload.id })
 				.update({ password: payload.password, updatedAt: new Date() })
-				.where({ id: payload.id })
 
 			if (updateNewPassword < 1) {
 				resolve({

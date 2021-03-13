@@ -23,18 +23,19 @@ export const loginController = async (req: Request, res: Response): Promise<Resp
 				message
 			})
 		} else {
-			const accessToken = signAccessToken()(req, { id: data._id, email: data.email }, { expiresIn: '1d' })
-
-			verifyPassword(req.body.password, data.password)
+			verifyPassword(req.body.password, data[0].password)
 				.then(
 					(success: boolean): Response<any> => {
 						if (!success) {
-							return res.status(200).json({
+							return res.status(400).json({
 								method: req.method,
 								status: res.statusCode,
-								message
+								message: 'username/password is wrong'
 							})
 						} else {
+							const accessToken = signAccessToken()(req, { id: data[0].userId, email: data[0].email }, { expiresIn: '1d' })
+							req.session['sessionRefreshToken'] = accessToken.refreshToken
+
 							return res.status(status).json({
 								method: req.method,
 								status,

@@ -27,8 +27,8 @@ export const resendController = async (req: Request, res: Response): Promise<Res
 				message
 			})
 		} else {
-			const { accessToken }: IJwt = signAccessToken()(req, { id: data._id, email: data.email }, { expiresIn: '5m' })
-			const template: IRegisterMail = tempMailResend(data.email, accessToken)
+			const { accessToken }: IJwt = signAccessToken()(req, { id: data[0].id, email: data[0].email }, { expiresIn: '5m' })
+			const template: IRegisterMail = tempMailResend(data[0].email, accessToken)
 
 			sgMail.setApiKey(process.env.SG_API_KEY)
 			const sgResponse: [ClientResponse, any] = await sgMail.send(template)

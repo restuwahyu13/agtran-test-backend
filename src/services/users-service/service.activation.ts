@@ -14,8 +14,8 @@ export const serviceActivation = (payload: IUser): Promise<Record<string, any>> 
 				})
 			} else {
 				const updateUserActive: number = await knex<UsersDTO>('users')
+					.where({ userId: checkUser[0].userId })
 					.update({ active: true, updatedAt: new Date() })
-					.where({ id: checkUser[0].id })
 
 				if (updateUserActive < 1) {
 					resolve({

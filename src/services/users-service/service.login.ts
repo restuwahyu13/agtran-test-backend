@@ -24,7 +24,8 @@ export const serviceLogin = (payload: IUser): Promise<Record<string, any>> => {
 				} else {
 					resolve({
 						status: 200,
-						message: 'login successfully'
+						message: 'login successfully',
+						data: checkUser
 					})
 				}
 			}

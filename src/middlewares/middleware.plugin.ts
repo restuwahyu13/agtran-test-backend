@@ -27,14 +27,15 @@ export const pluginMiddleware = (app: Express): void => {
 	)
 	app.use(
 		session({
-			store: new RedisConnect({ client: redisConnection(), ttl: 60 * 24 * 60 * 1000 }),
+			name: 'express-session',
+			store: new RedisConnect({ client: redisConnection(), ttl: 60 * 1000 * 90, prefix: 'redisSession:' }),
 			secret: process.env.SESSION_SECRET,
 			resave: false,
 			saveUninitialized: false
 		})
 	)
 
-	// global error handling
+	// global error handler
 	app.use((error: any, req: Request, res: Response, next: NextFunction) => {
 		if (res.statusCode >= 400) {
 			next(error)

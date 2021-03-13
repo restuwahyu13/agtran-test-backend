@@ -129,7 +129,7 @@ export const tempMailReset = (to: string, token: string): IResetMail => {
                     </p>
                 <div class="text-content">
                         <button>
-                        <a href="${CLIENT_URL}/user/reset-password/${token}">Reset Password</a>
+                        <a href="${CLIENT_URL}/users/reset-password/${token}">Reset Password</a>
                     </button>
                     <div class="footer-logo">
 					<span class="footer">&copy; ${new Date().getFullYear()} Coding Test, Inc All Right Reserved</span>

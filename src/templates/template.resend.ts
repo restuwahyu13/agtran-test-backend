@@ -147,7 +147,7 @@ export const tempMailResend = (to: string, token: string): IResendMail => {
                     </p>
                 <div class="text-content">
                     <button>
-                      <a href="${CLIENT_URL}/api/v1/user/activation/${token}">Activation Account</a>
+                      <a href="${CLIENT_URL}/users/activation/${token}">Activation Account</a>
                     </button>
                     <div class="footer-logo">
 						<span class="footer">&copy; ${new Date().getFullYear()} Coding Test, Inc All Right Reserved</span>
