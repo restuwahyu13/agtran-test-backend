@@ -51,6 +51,11 @@ export const tokenValidator = (): ValidationChain[] => [
 	check('token').isJWT().withMessage('token is not valid')
 ]
 
+export const tokenValidatorJwt = (): ValidationChain[] => [
+	check('refreshToken').notEmpty().withMessage('refreshToken is required'),
+	check('refreshToken').isJWT().withMessage('refreshToken is not valid')
+]
+
 export const idValidator = (): ValidationChain[] => [
 	check('id').notEmpty().withMessage('id is required'),
 	check('id').isMongoId().withMessage('id is not valid')

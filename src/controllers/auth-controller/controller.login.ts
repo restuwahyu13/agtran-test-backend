@@ -1,10 +1,10 @@
-import { Request, Response } from 'express'
+import { Request, Response, NextFunction } from 'express'
 import { service } from '../../services'
 import { expressValidator } from '../../utils/util.validator'
 import { verifyPassword } from '../../utils/util.encrypt'
 import { signAccessToken } from '../../utils/util.jwt'
 
-export const loginController = async (req: Request, res: Response): Promise<Response<any>> => {
+export const loginController = async (req: Request, res: Response, next: NextFunction): Promise<Response<any> | void> => {
 	const errors = expressValidator(req)
 
 	if (errors.length > 0) {

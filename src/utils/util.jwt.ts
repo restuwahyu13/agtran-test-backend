@@ -22,10 +22,9 @@ export const verifySignAccessToken = () => (token: string): string | any => {
 	} catch (err) {}
 }
 
-export const signRefreshToken = () => (req: Request): string | any => {
+export const signRefreshToken = () => (token: string): string | any => {
 	try {
-		const getToken: string = req.session['sessionRefreshToken']
-		const { id, email }: string | any = jwt.verify(getToken, process.env.REFRESH_TOKEN_SECRET)
+		const { id, email }: string | any = jwt.verify(token, process.env.REFRESH_TOKEN_SECRET)
 		const accessToken: string = jwt.sign({ userId: id, email: email }, process.env.ACCESS_TOKEN_SECRET, {
 			expiresIn: '90d'
 		})

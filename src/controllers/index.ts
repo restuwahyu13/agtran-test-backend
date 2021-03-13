@@ -1,9 +1,10 @@
-import { registerController } from './users-controller/controller.register'
-import { loginController } from './users-controller/controller.login'
-import { activationController } from './users-controller/controller.activation'
-import { forgotController } from './users-controller/controller.forgot'
-import { resendController } from './users-controller/controller.resend'
-import { resetController } from './users-controller/controller.reset'
+import { registerController } from './auth-controller/controller.register'
+import { loginController } from './auth-controller/controller.login'
+import { activationController } from './auth-controller/controller.activation'
+import { forgotController } from './auth-controller/controller.forgot'
+import { resendController } from './auth-controller/controller.resend'
+import { resetController } from './auth-controller/controller.reset'
+import { refreshTokenController } from './auth-controller/controller.refreshToken'
 
 export const controller = {
 	registerController,
@@ -11,5 +12,6 @@ export const controller = {
 	activationController,
 	forgotController,
 	resendController,
-	resetController
+	resetController,
+	refreshTokenController
 }
