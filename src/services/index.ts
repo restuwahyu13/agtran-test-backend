@@ -1,9 +1,9 @@
-import { serviceRegister } from './users-service/service.register'
-import { serviceLogin } from './users-service/service.login'
-import { serviceActivation } from './users-service/service.activation'
-import { serviceForgot } from './users-service/service.forgot'
-import { serviceResend } from './users-service/service.resend'
-import { serviceReset } from './users-service/service.reset'
+import { serviceRegister } from './auths-service/service.register'
+import { serviceLogin } from './auths-service/service.login'
+import { serviceActivation } from './auths-service/service.activation'
+import { serviceForgot } from './auths-service/service.forgot'
+import { serviceResend } from './auths-service/service.resend'
+import { serviceReset } from './auths-service/service.reset'
 
 export const service = {
 	serviceRegister,

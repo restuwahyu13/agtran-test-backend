@@ -37,15 +37,17 @@ export const pluginMiddleware = (app: Express): void => {
 
 	// global error handler
 	app.use((error: any, req: Request, res: Response, next: NextFunction) => {
-		if (res.statusCode >= 400) {
-			return res.status(res.statusCode).json({
-				method: req.method,
-				status: res.statusCode,
-				message: error
-			})
-		} else {
-			next()
-		}
+		res.once('finish', () => {
+			if (res.statusCode >= 400) {
+				return res.status(res.statusCode).json({
+					method: req.method,
+					status: res.statusCode,
+					message: error
+				})
+			} else {
+				next()
+			}
+		})
 	})
 
 	app.enable('trust proxy')

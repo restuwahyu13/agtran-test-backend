@@ -58,7 +58,7 @@ export const tokenValidatorJwt = (): ValidationChain[] => [
 
 export const idValidator = (): ValidationChain[] => [
 	check('id').notEmpty().withMessage('id is required'),
-	check('id').isMongoId().withMessage('id is not valid')
+	check('id').isNumeric().withMessage('id must be a number')
 ]
 
 export const passwordValidator = (): ValidationChain[] => [

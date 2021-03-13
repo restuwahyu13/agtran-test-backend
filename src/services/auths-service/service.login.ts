@@ -22,6 +22,10 @@ export const serviceLogin = (payload: IUser): Promise<Record<string, any>> => {
 						message: 'account is not active, please resend new activation token'
 					})
 				} else {
+					await knex<UsersDTO>('users')
+						.where({ userId: checkUser[0].userId })
+						.update({ firstLogin: new Date(), updatedAt: new Date() })
+
 					resolve({
 						status: 200,
 						message: 'login successfully',

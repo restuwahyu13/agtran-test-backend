@@ -24,7 +24,7 @@ export const serviceActivation = (payload: IUser): Promise<Record<string, any>> 
 					})
 				} else {
 					resolve({
-						status: 201,
+						status: 200,
 						message: `activation account successfully for this email ${checkUser[0].email}`
 					})
 				}
