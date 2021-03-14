@@ -88,16 +88,13 @@ push.o:
 ### APPLICATION BUILD AUTOMATION
 #######################################
 
-build: npm.i lfx.i compiler.i migrate.i
+build: npm.i lfx.i compiler.i
 
 npm.i:
-	${NPM} install --silent && npm audit fix
+	${NPM} install
 
 lfx.i:
 	${NPM} run lintfix
 
 compiler.i:
 	${NPM} run build
-
-migrate.i:
-	npx knex migrate:latest

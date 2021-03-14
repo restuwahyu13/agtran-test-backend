@@ -1,24 +1,12 @@
-version: '3.9'
+version: '3.8'
 services:
-  ## WEBAPP SERVICE
+# WEBAPP SERVICE
   webapp:
     build: .
-    container_name: express/rest-api
+    container_name: express-rest-api
     restart: unless-stopped
     ports:
       - 3000:3000
-    environment:
-      - HOST=0.0.0.0
-      - PORT=3000
-      - NODE_ENV=production
-      - URL_PROD=http://localhost:3000/api/v1
-      - PG_URI= postgres://restuwahyu13:restuwahyu13@db:5432/auth
-      - ACCESS_TOKEN_SECRET=cd3ba344f7abb066c80f192818f10e4126735658
-      - REFRESH_TOKEN_SECRET=bda671e118c52d0bc4e475604f630e6f4e91fefe
-      - SESSION_SECRET=abb066c80f1HGU0cGaROa7ROBekla6BuNQ
-      - SG_API_KEY=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
-      - GOOGLE_ID=AIzaSyA0JN_CZmjspRfZq5rl1SWXuKY2MtVTOm8
-      - GOOGLE_SECRET=1083598520749-j69m6i3678udpmvdud1sbqj053sudkdh.apps.googleusercontent.com
     depends_on:
       - db
       - storage
@@ -27,24 +15,28 @@ services:
       - /usr/src/app/node_modules
     networks:
       - node_networks
-  ## DATABASE SERVICE
+# DATABASE SERVICE
   db:
     image: postgres:13-alpine
     container_name: pg-database
     restart: unless-stopped
+    ports:
+    - 5432:5432
     environment:
       - POSTGRES_USER=restuwahyu13
       - POSTGRES_PASSWORD=restuwahyu13
       - POSTGRES_DB=auth
     volumes:
-      - database:/var/lib/postgresql/data
+      - db:/var/lib/postgresql/data
     networks:
       - node_networks
-  ## STORAGE SERVICE
+# STORAGE SERVICE
   storage:
     image: redis:6.2.1-alpine
     container_name: redis-storage
     restart: unless-stopped
+    ports:
+    - 6379:6379
     volumes:
       - storage:/var/lib/redis/data
     networks:
@@ -54,5 +46,5 @@ networks:
   node_networks:
 ## CREATE DOCKER VOLUME
 volumes:
-  database:
+  db:
   storage:
