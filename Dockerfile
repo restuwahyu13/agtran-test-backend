@@ -26,8 +26,8 @@ ENV NODE_ENV="production" \
   REFRESH_TOKEN_SECRET="bda671e118c52d0bc4e475604f630e6f4e91fefe" \
   SESSION_SECRET="abb066c80f1HGU0cGaROa7ROBekla6BuNQ" \
   SG_API_KEY="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" \
-  GOOGLE_ID="AIzaSyA0JN_CZmjspRfZq5rl1SWXuKY2MtVTOm8" \
-  GOOGLE_SECRET="1083598520749-j69m6i3678udpmvdud1sbqj053sudkdh.apps.googleusercontent.com"
+  GOOGLE_ID="279565459220-8caqvsn1pvd5hjrsgb34on1qolo0lj9d.apps.googleusercontent.com" \
+  GOOGLE_SECRET="dHqEQWB_DfknjYGopaMowkUu"
 RUN chmod 777 ./scripts/start.sh
 EXPOSE 3000
 CMD ./scripts/start.sh

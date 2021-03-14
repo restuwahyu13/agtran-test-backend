@@ -8,7 +8,7 @@ import compression from 'compression'
 import passport from 'passport'
 import session from 'express-session'
 import connectRedis, { RedisStore } from 'connect-redis'
-// import morgan from 'morgan'
+import morgan from 'morgan'
 import { redisConnection } from '../utils/util.redisConnect'
 
 const RedisConnect = connectRedis(session) as RedisStore
@@ -33,8 +33,8 @@ export const pluginMiddleware = (app: Express): void => {
 			saveUninitialized: false
 		})
 	)
-	app.use(passport.session())
 	app.use(passport.initialize())
+	app.use(passport.session())
 
 	// global error handler
 	app.use((error: any, req: Request, res: Response, next: NextFunction) => {
@@ -51,9 +51,9 @@ export const pluginMiddleware = (app: Express): void => {
 		})
 	})
 
-	// if (process.env.NODE_ENV !== 'production') {
-	// 	app.use(morgan('dev'))
-	// }
+	if (process.env.NODE_ENV !== 'production') {
+		app.use(morgan('dev'))
+	}
 
 	app.enable('trust proxy')
 	app.disable('x-powered-by')
