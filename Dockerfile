@@ -1,20 +1,15 @@
-FROM node:14-alpine
+## STAGE ONE
 
-WORKDIR /usr/src/app
-
-RUN apt-get update \
-  && apt-get dist-upgrade -y \
-  && apt-get clean \
-  &&  apk add make
-
+FROM node:14-alpine as agtran-test-backend
 COPY package*.json \
-  Makefile /usr/src/app/
+  Makefile ./
+COPY . ./
+RUN apk add make
 
-COPY . ./usr.src/app
+## STAGE TWO
 
-RUN make bprod \
-  && npx knex migrate:latest
-
+FROM agtran-test-backend
+COPY --from=agtran-test-backend ./ ./usr/src/app
+RUN make build
 EXPOSE 3000
-
 CMD npm start

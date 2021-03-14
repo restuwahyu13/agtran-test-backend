@@ -33,7 +33,7 @@ endif
 prod: lfx.c compiler.c #application with env production
 
 lfx.c:
-	${NPM} run lint:fix
+	${NPM} run lintfix
 
 compiler.c:
 	${NPM} run build
@@ -50,7 +50,7 @@ format:
 	${NPM} run format
 
 lfx:
-	${NPM} run lint:fix
+	${NPM} run lintfix
 
 ###############################
 ### KNEX MIGRATION MANUAL
@@ -88,21 +88,16 @@ push.o:
 ### APPLICATION BUILD AUTOMATION
 #######################################
 
-bdev: npm.b lfx.b
-
-npm.b:
-	${NPM} install
-
-lfx.b:
-	${NPM} run lint:fix
-
-bprod: npm.i lfx.i compiler.i
+build: npm.i lfx.i compiler.i migrate.i
 
 npm.i:
-	${NPM} install --silent --only=prod && npm audit fix
+	${NPM} install --silent && npm audit fix
 
 lfx.i:
-	${NPM} run lint:fix
+	${NPM} run lintfix
 
 compiler.i:
 	${NPM} run build
+
+migrate.i:
+	npx knex migrate:latest

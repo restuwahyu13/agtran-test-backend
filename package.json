@@ -13,8 +13,8 @@
 		"start": "node dist/server.js",
 		"dev-lin": "nodemon -w 'src/**/*.ts' -x ts-node --files -H -T server.ts",
 		"dev-win": "nodemon -w *.ts -x ts-node --files -H -T server.ts",
-		"format": "prettier ./src/**/*.{ts,spect.ts,test.ts} --write",
-		"lint": "eslint ./src/**/*.{ts,spect.ts,test.ts} --fix",
+		"lint": "eslint src/**/*.ts --fix",
+		"format": "prettier src/**/*.ts --write",
 		"lintfix": "npm run format && npm run lint"
 	},
 	"repository": {

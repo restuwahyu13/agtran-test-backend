@@ -29,7 +29,7 @@ services:
       - node_networks
   ## DATABASE SERVICE
   db:
-    image: postgresql:13-alpine
+    image: postgres:13-alpine
     container_name: pg-database
     restart: unless-stopped
     environment:

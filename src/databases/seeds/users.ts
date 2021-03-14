@@ -1,6 +1,6 @@
 import { Knex } from 'knex'
 
-export async function seed(knex: Knex): Promise<void> {
+export const seed = async (knex: Knex): Promise<void> => {
 	// Inserts seed entries
 	await knex('users').insert([
 		{
