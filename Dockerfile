@@ -7,7 +7,6 @@ COPY package*.json \
   .eslintrc \
   .prettierignore \
   .prettierrc \
-  # .env \
   Makefile ./
 COPY . ./
 RUN apk add make \
