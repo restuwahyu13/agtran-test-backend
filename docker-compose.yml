@@ -12,7 +12,7 @@ services:
       - PORT=3000
       - NODE_ENV=production
       - URL_PROD=http://localhost:3000/api/v1
-      - PG_URI= postgresql://restuwahyu13:restuwahyu13@localhost:5432/auth
+      - PG_URI= postgres://restuwahyu13:restuwahyu13@db:5432/auth
       - ACCESS_TOKEN_SECRET=cd3ba344f7abb066c80f192818f10e4126735658
       - REFRESH_TOKEN_SECRET=bda671e118c52d0bc4e475604f630e6f4e91fefe
       - SESSION_SECRET=abb066c80f1HGU0cGaROa7ROBekla6BuNQ
