@@ -1,10 +1,10 @@
 FROM node:14-alpine
-WORKDIR /usr/src/app/client
+WORKDIR /usr/src/client
 COPY package*.json \
   vue.config.js \
   babel.config.js \
-  Makefile /usr/src/app/client/
-COPY . /usr/src/app/client /
+  Makefile /usr/src/client/
+COPY . /usr/src/client
 RUN apk add make \
   && make build
 EXPOSE 8080

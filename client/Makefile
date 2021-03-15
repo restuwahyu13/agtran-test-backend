@@ -15,7 +15,7 @@ cbuild:
 ### APPLICATION BUILD AUTOMATION
 #######################################
 
-build: npm.i compiler.i serve.i
+build: npm.i compiler.i
 
 npm.i:
 	${NPM} install

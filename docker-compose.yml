@@ -2,7 +2,7 @@ version: '3.8'
 services:
 # WEBAPP SERVICE
   webapp:
-    container_name: clientapp
+    container_name: client-app
     restart: unless-stopped
     build:
       context: .
@@ -10,13 +10,13 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - .:/usr/src/app/client
-      - /usr/src/app/client/node_modules
+      - .:/usr/src/client
+      - /usr/src/client/node_modules
     networks:
       - node_networks
 # WEB SERVER SERVICE
   webserver:
-    container_name: serverapp
+    container_name: server-app
     restart: unless-stopped
     build:
       context: .
@@ -27,8 +27,8 @@ services:
       - db
       - storage
     volumes:
-      - .:/usr/src/app/server
-      - /usr/src/app/server/node_modules
+      - .:/usr/src/server
+      - /usr/src/server/node_modules
     networks:
       - node_networks
 # DATABASE SERVICE
