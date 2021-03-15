@@ -21,6 +21,13 @@ cpup:
 cpdown:
 	${DOCKER}-compose -f docker-compose.yml down
 
+#####################################
+### APPLICATION BUILD AND DEV CLIENT
+####################################
+
+serve:
+	${NPM} run client:start
+
 #################################
 ### APPLICATION BUILD AND DEV
 #################################
@@ -88,7 +95,7 @@ push.o:
 ### APPLICATION BUILD AUTOMATION
 #######################################
 
-build: npm.i lfx.i compiler.i
+build: npm.i lfx.i compiler.i client-b.i
 
 npm.i:
 	${NPM} install
@@ -98,3 +105,7 @@ lfx.i:
 
 compiler.i:
 	${NPM} run build
+
+client-b.i:
+
+	${NPM} run client:	build
