@@ -1,0 +1,11 @@
+FROM node:14-alpine
+WORKDIR /usr/src/app/client
+COPY package*.json \
+  vue.config.js \
+  babel.config.js \
+  Makefile /usr/src/app/client/
+COPY . /usr/src/app/client /
+RUN apk add make \
+  && make build
+EXPOSE 8080
+CMD npm run serve

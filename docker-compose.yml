@@ -2,11 +2,11 @@ version: '3.8'
 services:
 # WEBAPP SERVICE
   webapp:
+    container_name: clientapp
+    restart: unless-stopped
     build:
       context: .
-      dockerfile: client/Dockerfile
-    container_name: vue-app
-    restart: unless-stopped
+      dockerfile: ./client/Dockerfile.client
     ports:
       - 8080:8080
     volumes:
@@ -16,11 +16,11 @@ services:
       - node_networks
 # WEB SERVER SERVICE
   webserver:
+    container_name: serverapp
+    restart: unless-stopped
     build:
       context: .
-      dockerfile: server/Dockerfile
-    container_name: express-rest-api
-    restart: unless-stopped
+      dockerfile: ./server/Dockerfile.server
     ports:
       - 3000:3000
     depends_on:
@@ -43,7 +43,7 @@ services:
       - POSTGRES_PASSWORD=restuwahyu13
       - POSTGRES_DB=auth
     volumes:
-      - db:/var/lib/postgresql/data
+      - db:/var/lib/postgresql/data:delegated
     networks:
       - node_networks
 # STORAGE SERVICE
@@ -54,7 +54,7 @@ services:
     ports:
     - 6379:6379
     volumes:
-      - storage:/var/lib/redis/data
+      - storage:/var/lib/redis/data:delegated
     networks:
       - node_networks
 ## CREATE DOCKER NETWORK

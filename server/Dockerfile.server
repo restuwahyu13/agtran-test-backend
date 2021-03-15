@@ -1,21 +1,15 @@
-## STAGE ONE
-FROM node:14-alpine as agtran-test-backend
+FROM node:14-alpine
+WORKDIR /usr/src/app/server
 COPY package*.json \
-  .dockerignore \
   .editorconfig \
   .eslintignore \
   .eslintrc \
   .prettierignore \
   .prettierrc \
-  Makefile ./
-COPY . ./
+  Makefile /usr/src/app/server/
+COPY . /usr/src/app/server/
 RUN apk add make \
   && make build
-
-## STAGE TWO
-FROM agtran-test-backend
-WORKDIR /usr/src/app/server
-COPY --from=agtran-test-backend ./ ./usr/src/app/server
 ENV NODE_ENV="production" \
   HOST="0.0.0.0" \
   PORT="3000" \
