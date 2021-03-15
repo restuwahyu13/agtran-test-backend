@@ -2,7 +2,23 @@ version: '3.8'
 services:
 # WEBAPP SERVICE
   webapp:
-    build: .
+    build:
+      context: .
+      dockerfile: client/Dockerfile
+    container_name: vue-app
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/usr/src/app/client
+      - /usr/src/app/client/node_modules
+    networks:
+      - node_networks
+# WEB SERVER SERVICE
+  webserver:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
     container_name: express-rest-api
     restart: unless-stopped
     ports:
@@ -11,8 +27,8 @@ services:
       - db
       - storage
     volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
+      - .:/usr/src/app/server
+      - /usr/src/app/server/node_modules
     networks:
       - node_networks
 # DATABASE SERVICE

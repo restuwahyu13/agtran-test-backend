@@ -10,11 +10,12 @@ COPY package*.json \
   Makefile ./
 COPY . ./
 RUN apk add make \
-&& make build
+  && make build
 
 ## STAGE TWO
 FROM agtran-test-backend
-COPY --from=agtran-test-backend ./ ./usr/src/app
+WORKDIR /usr/src/app/server
+COPY --from=agtran-test-backend ./ ./usr/src/app/server
 ENV NODE_ENV="production" \
   HOST="0.0.0.0" \
   PORT="3000" \
@@ -29,5 +30,4 @@ ENV NODE_ENV="production" \
   GOOGLE_ID="279565459220-8caqvsn1pvd5hjrsgb34on1qolo0lj9d.apps.googleusercontent.com" \
   GOOGLE_SECRET="dHqEQWB_DfknjYGopaMowkUu"
 RUN chmod 777 ./scripts/start.sh
-EXPOSE 3000
 CMD ./scripts/start.sh
