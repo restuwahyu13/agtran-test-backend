@@ -4,7 +4,7 @@ COPY package*.json \
   vue.config.js \
   babel.config.js \
   Makefile /usr/src/client/
-COPY . /usr/src/client
+COPY . /usr/src/client/
 RUN apk add make \
   && make build
 EXPOSE 8080
