@@ -44,3 +44,11 @@ lfx.i:
 
 compiler.i:
 	${NPM} run build
+
+
+########################################
+### APPLICATION START PRODUCTION
+#######################################
+
+start:
+	${NPM} start

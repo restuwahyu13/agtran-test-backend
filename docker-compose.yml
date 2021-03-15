@@ -2,34 +2,32 @@ version: '3.8'
 services:
 # WEBAPP SERVICE
   webapp:
-    image: webapp
     container_name: client-app
     restart: unless-stopped
     build:
-      context: .
-      dockerfile: ./client/Dockerfile.client
+      context: client
+      dockerfile: Dockerfile.client
     ports:
       - 8080:8080
     volumes:
-      - .:/usr/src/client:cached
+      - /usr/src/client
       - /usr/src/client/node_modules
     networks:
       - node_networks
 # WEB SERVER SERVICE
   webserver:
-    image: webserver
     container_name: server-app
     restart: unless-stopped
     build:
-      context: .
-      dockerfile: ./server/Dockerfile.server
+      context: server
+      dockerfile: Dockerfile.server
     ports:
       - 3000:3000
     depends_on:
       - db
       - storage
     volumes:
-      - .:/usr/src/server:cached
+      - /usr/src/server
       - /usr/src/server/node_modules
     networks:
       - node_networks
