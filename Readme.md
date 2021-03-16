@@ -31,7 +31,7 @@
 #### Database Migration
 
 ```sh
-docker-compose exec -it webserver sh | docker exec -it <Container ID> sh
+docker-compose exec <Service Name> sh | docker exec -it <Container ID> sh
 ```
 
 ```sh
