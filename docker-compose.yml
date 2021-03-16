@@ -1,9 +1,18 @@
 version: '3.8'
 services:
+# WEBAPP SERVICE
+  webapp:
+    restart: unless-stopped
+    build: client
+    volumes:
+      - .:/usr/src/client:cached
+      - /usr/src/client/node_modules
+    networks:
+      - node_networks
 # WEB SERVER SERVICE
   webserver:
     restart: unless-stopped
-    build: server
+    build: .
     environment:
       - NODE_ENV=production
       - PORT=3000
@@ -27,11 +36,6 @@ services:
       - .:/usr/src/app:cached
       - /usr/src/app/node_modules
       - /usr/src/app/client/node_modules
-    networks:
-      - node_networks
-# WEBAPP SERVICE
-  webapp:
-    build: client
     networks:
       - node_networks
 # DATABASE SERVICE
