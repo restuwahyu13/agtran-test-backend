@@ -1,6 +1,23 @@
 NPM := npm
 NPX := npx
 
+##################################################
+### APPLICATION INSTALL PACKAGE CLIENT AND SERVER
+#################################################
+
+install:
+	${NPM} run install && ${NPM} run client:install
+
+#####################################
+### APPLICATION BUILD AND DEV CLIENT
+####################################
+
+cserve:
+	${NPM} run client:start
+
+cbuild:
+	${NPM} run client:build
+
 ####################################
 ### APPLICATION BUILD AND DEV SERVER
 ####################################
@@ -30,25 +47,20 @@ klatest: #knex migrate latest database
 krollback: #knex migrate rollback database
 	${KNEX} migrate:rollback
 
-########################################
+##################################
 ### APPLICATION BUILD AUTOMATION
-#######################################
+##################################
 
-build: npm.i lfx.i compiler.i
+build: npm.i lfx.i sbuild.i cbuild.i
 
 npm.i:
-	${NPM} install
+	${NPM} install && 	${NPM} client:install
 
 lfx.i:
 	${NPM} run lintfix
 
-compiler.i:
+sbuild.i:
 	${NPM} run build
 
-
-########################################
-### APPLICATION START PRODUCTION
-#######################################
-
-start:
-	${NPM} start
+cbuild.i:
+	${NPM} run build

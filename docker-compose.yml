@@ -1,16 +1,5 @@
-version: '3'
+version: '3.8'
 services:
-# WEBAPP SERVICE
-  webapp:
-    restart: unless-stopped
-    build: client
-    ports:
-      - 8080:8080
-    volumes:
-      - /usr/src/client
-      - /usr/src/client/node_modules
-    networks:
-      - node_networks
 # WEB SERVER SERVICE
   webserver:
     restart: unless-stopped
@@ -31,11 +20,10 @@ services:
     ports:
       - 3000:3000
     depends_on:
-      - webapp
       - db
       - redis
     volumes:
-      - /usr/src/server
+      - .:/usr/src/server:cache
       - /usr/src/server/node_modules
     networks:
       - node_networks
@@ -50,7 +38,7 @@ services:
       - POSTGRES_PASSWORD=restuwahyu13
       - POSTGRES_DB=auth
     volumes:
-      - db:/var/lib/postgresql/data
+      - db:/var/lib/postgresql/data:delegated
     networks:
       - node_networks
 # STORAGE SERVICE
@@ -60,7 +48,7 @@ services:
     ports:
     - 6379:6379
     volumes:
-      - redis:/var/lib/redis/data
+      - redis:/var/lib/redis/data:delegated
     networks:
       - node_networks
 # CREATE DOCKER NETWORK

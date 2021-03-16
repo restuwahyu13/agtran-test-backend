@@ -1,9 +1,0 @@
-FROM node:14-alpine
-WORKDIR /usr/src/client
-COPY package*.json \
-  vue.config.js \
-  babel.config.js \
-  Makefile /usr/src/client/
-COPY . /usr/src/client/
-RUN apk add make \
-  && make build
