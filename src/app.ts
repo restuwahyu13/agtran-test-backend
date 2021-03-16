@@ -1,5 +1,5 @@
-import express, { Express } from 'express'
-import { resolve } from 'path'
+import express, { Express, Request, Response } from 'express'
+import { join } from 'path'
 import { routeMiddleware } from './middlewares/middleware.route'
 import { pluginMiddleware } from './middlewares/middleware.plugin'
 import { pasportStrategy } from './utils/util.passport'
@@ -11,10 +11,10 @@ routeMiddleware(app)
 pasportStrategy()
 
 if (process.env.NODE_ENV === 'production') {
-	app.use(express.static(resolve(__dirname, '../client/dist')))
+	app.use(express.static(join(__dirname, '../../client/dist')))
 
-	app.get('*', (req, res) => {
-		res.sendFile(resolve(__dirname, '../client/dist/index.html'))
+	app.get('*', (req: Request, res: Response) => {
+		res.sendFile(join(__dirname, '../../client/dist/index.html'))
 	})
 }
 
