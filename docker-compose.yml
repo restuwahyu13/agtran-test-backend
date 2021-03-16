@@ -5,8 +5,8 @@ services:
     restart: unless-stopped
     build: client
     volumes:
-      - .:/usr/src/client:cached
-      - /usr/src/client/node_modules
+      - .:/usr/src/app/client:cached
+      - /usr/src/app/client/node_modules
     networks:
       - node_networks
 # WEB SERVER SERVICE
@@ -35,7 +35,6 @@ services:
     volumes:
       - .:/usr/src/app:cached
       - /usr/src/app/node_modules
-      - /usr/src/app/client/node_modules
     networks:
       - node_networks
 # DATABASE SERVICE
