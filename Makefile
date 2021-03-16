@@ -1,13 +1,6 @@
 NPM := npm
 NPX := npx
 
-##################################################
-### APPLICATION INSTALL PACKAGE CLIENT AND SERVER
-#################################################
-
-install:
-	${NPM} install && ${NPM} run client:install
-
 #####################################
 ### APPLICATION BUILD AND DEV CLIENT
 ####################################
@@ -51,16 +44,13 @@ krollback: #knex migrate rollback database
 ### APPLICATION BUILD AUTOMATION
 ##################################
 
-build: npm.i lfx.i sbuild.i cbuild.i
+build: npm.i lfx.i sbuild.i
 
 npm.i:
-	${NPM} install && 	${NPM} client:install
+	${NPM} install
 
 lfx.i:
 	${NPM} run lintfix
 
 sbuild.i:
-	${NPM} run build
-
-cbuild.i:
 	${NPM} run build

@@ -20,12 +20,18 @@ services:
     ports:
       - 3000:3000
     depends_on:
+      - webapp
       - db
       - redis
     volumes:
       - .:/usr/src/app:cache
       - /usr/src/app/node_modules
       - /usr/src/app/client/node_modules
+    networks:
+      - node_networks
+# WEBAPP SERVICE
+  webapp:
+    build: client
     networks:
       - node_networks
 # DATABASE SERVICE
