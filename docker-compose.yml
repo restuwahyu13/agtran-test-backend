@@ -8,7 +8,7 @@ services:
       - NODE_ENV=production
       - PORT=3000
       - URL_PROD=http://localhost:3000/api/v1
-      - PG_URI=postgres://restuwahyu13:restuwahyu13@db:5432/auth
+      - PG_URI_PROD=postgres://restuwahyu13:restuwahyu13@db:5432/auth
       - REDIS_HOST=redis
       - REDIS_PORT=6379
       - ACCESS_TOKEN_SECRET=cd3ba344f7abb066c80f192818f10e4126735658
@@ -23,8 +23,9 @@ services:
       - db
       - redis
     volumes:
-      - .:/usr/src/server:cache
-      - /usr/src/server/node_modules
+      - .:/usr/src/app:cache
+      - /usr/src/app/node_modules
+      - /usr/src/app/client/node_modules
     networks:
       - node_networks
 # DATABASE SERVICE

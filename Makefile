@@ -6,7 +6,7 @@ NPX := npx
 #################################################
 
 install:
-	${NPM} run install && ${NPM} run client:install
+	${NPM} install && ${NPM} run client:install
 
 #####################################
 ### APPLICATION BUILD AND DEV CLIENT

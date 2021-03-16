@@ -1,13 +1,15 @@
 FROM node:14-alpine
-WORKDIR /usr/src/server
+WORKDIR /usr/src/app
 COPY package*.json \
   .editorconfig \
   .eslintignore \
   .eslintrc \
   .prettierignore \
   .prettierrc \
-  Makefile /usr/src/server/
-COPY . /usr/src/server
+  Makefile /usr/src/app/
+COPY . /usr/src/app
 RUN apk add make \
   && make build
-CMD npm start
+RUN chmod 777 ./scripts/start.sh
+EXPOSE 3000
+CMD ./scripts/start.sh
