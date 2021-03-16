@@ -10,4 +10,4 @@ COPY package*.json \
 COPY . /usr/src/server
 RUN apk add make \
   && make build
-CMD npm run dev-lin
+CMD npm start

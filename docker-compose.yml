@@ -17,7 +17,6 @@ services:
     build: server
     environment:
       - NODE_ENV=production
-      - HOST=0.0.0.0
       - PORT=3000
       - URL_PROD=http://localhost:3000/api/v1
       - PG_URI=postgres://restuwahyu13:restuwahyu13@db:5432/auth

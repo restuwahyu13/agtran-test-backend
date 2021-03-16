@@ -27,7 +27,7 @@ export const pluginMiddleware = (app: Express): void => {
 	app.use(
 		session({
 			name: 'express-session',
-			store: new RedisConnect({ client: redisConnection(), ttl: 60 * 1000 * 90, prefix: 'redisSession:' }),
+			// store: new RedisConnect({ client: redisConnection(), ttl: 60 * 1000 * 90, prefix: 'redisSession:' }),
 			secret: process.env.SESSION_SECRET,
 			resave: false,
 			saveUninitialized: false

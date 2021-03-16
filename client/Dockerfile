@@ -7,5 +7,3 @@ COPY package*.json \
 COPY . /usr/src/client/
 RUN apk add make \
   && make build
-EXPOSE 8080
-CMD npm run serve
