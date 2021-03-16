@@ -19,7 +19,7 @@ export default {
 	production: {
 		client: 'pg',
 		connection: process.env.PG_URI_PROD,
-		pool: { min: 1, max: 20 },
+		pool: { min: 1, max: 10 },
 		migrations: {
 			directory: resolve(process.cwd(), 'src/databases/migrations/')
 		}
