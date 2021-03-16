@@ -1,4 +1,5 @@
 node_modules
 dists
 .env
-client
+client/node_modules
+client/dist

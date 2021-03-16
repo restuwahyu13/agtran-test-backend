@@ -9,6 +9,7 @@
 	"scripts": {
 		"client:start": "npm run serve --prefix client",
 		"client:build": "npm run build --prefix client",
+		"client:install": "npm run installed --prefix client",
 		"cleanup": "rimraf dist",
 		"compile": "tsc --pretty",
 		"build": "npm run cleanup && npm run compile",
@@ -33,6 +34,7 @@
 		"@sendgrid/mail": "^7.4.2",
 		"bcryptjs": "^2.4.3",
 		"body-parser": "^1.19.0",
+		"client": "^0.0.1",
 		"compression": "^1.7.4",
 		"connect-redis": "^5.1.0",
 		"consola": "^2.15.3",
@@ -48,7 +50,8 @@
 		"passport": "^0.4.1",
 		"passport-google-oauth20": "^2.0.0",
 		"pg": "^8.5.1",
-		"uuid": "^8.3.2"
+		"uuid": "^8.3.2",
+		"vueapp": "file:client"
 	},
 	"devDependencies": {
 		"@types/bcryptjs": "^2.4.2",

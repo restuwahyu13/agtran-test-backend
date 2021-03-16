@@ -33,6 +33,7 @@ compiler.c:
 ###############################
 
 KNEX := knex
+NPX := npx
 
 klatest: #knex migrate latest database
 	${KNEX} migrate:latest
@@ -40,17 +41,26 @@ klatest: #knex migrate latest database
 krollback: #knex migrate rollback database
 	${KNEX} migrate:rollback
 
+kmigrate:
+	$(shell exec npx knex migrate:latest)
+
 ##################################
 ### APPLICATION BUILD AUTOMATION
 ##################################
 
-build: npm.i lfx.i sbuild.i
+build: sinstall.i lfx.i sbuild.i cinstall.i cbuild.i
 
-npm.i:
-	${NPM} install
+sinstall.i:
+	${NPM} install --silent
 
 lfx.i:
 	${NPM} run lintfix
 
 sbuild.i:
 	${NPM} run build
+
+cinstall.i:
+	${NPM} run client:install
+
+cbuild.i:
+	${NPM} run client:build

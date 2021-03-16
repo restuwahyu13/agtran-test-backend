@@ -1,15 +1,5 @@
 version: '3.8'
 services:
-# WEBAPP SERVICE
-  webapp:
-    restart: unless-stopped
-    build: client
-    volumes:
-      - .:/usr/src/app/client:cached
-      - /usr/src/app/client/node_modules
-    networks:
-      - node_networks
-# WEB SERVER SERVICE
   webserver:
     restart: unless-stopped
     build: .
@@ -29,12 +19,11 @@ services:
     ports:
       - 3000:3000
     depends_on:
-      - webapp
       - db
       - redis
     volumes:
-      - .:/usr/src/app:cached
-      - /usr/src/app/node_modules
+      - .:/app:cached
+      - /app/node_modules
     networks:
       - node_networks
 # DATABASE SERVICE

@@ -4,11 +4,11 @@
 
 -	development
 ```sh
- make cserve | npm run serve
+ make cserve | npm run client:serve
 ```
 -	production
 ```sh
- make cbuild | npm run build
+ make cbuild | npm run client:build
 ```
 
 #### Server
@@ -28,6 +28,16 @@
  docker-compose up -d --build
 ```
 
+#### Database Migration
+
+```sh
+docker-compose exec -it webserver sh | docker exec -it <Container ID> sh
+```
+
+```sh
+npx knex migrate:latest | npx knex migrate:rollback
+```
+
 ### Endpoint Route
 
 | Name             | Route                             | Method |
@@ -40,4 +50,4 @@
 | Reset Password   | /users/auth/reset-password/:token | POST   |
 | Refresh Token    | /users/auth/refresh-token         | POST   |
 | Google Oatuh     | /auth/google                      | GET    |
-|                  | /auth/google/callback             | GET    |
+|                  | /auth/google/callback             | GET    | 
