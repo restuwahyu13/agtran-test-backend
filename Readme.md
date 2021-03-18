@@ -28,16 +28,6 @@
  docker-compose up -d --build
 ```
 
-#### Database Migration
-
-```sh
-docker-compose exec <Service Name> sh | docker exec -it <Container ID> sh
-```
-
-```sh
-npx knex migrate:latest | npx knex migrate:rollback
-```
-
 ### Endpoint Route
 
 | Name             | Route                             | Method |
@@ -50,4 +40,4 @@ npx knex migrate:latest | npx knex migrate:rollback
 | Reset Password   | /users/auth/reset-password/:token | POST   |
 | Refresh Token    | /users/auth/refresh-token         | POST   |
 | Google Oatuh     | /auth/google                      | GET    |
-|                  | /auth/google/callback             | GET    | 
+|                  | /auth/google/callback             | GET    |

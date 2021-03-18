@@ -11,4 +11,3 @@ COPY . /app
 RUN apk add make \
   && make build
 EXPOSE 3000
-CMD npm start

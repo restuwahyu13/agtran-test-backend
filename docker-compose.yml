@@ -3,6 +3,7 @@ services:
   webserver:
     restart: unless-stopped
     build: .
+    command: sh -c "npm start"
     environment:
       - NODE_ENV=production
       - PORT=3000
