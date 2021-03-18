@@ -3,7 +3,7 @@ services:
   webserver:
     restart: unless-stopped
     build: .
-    command: sh -c "sleep 10 && npm start"
+    command: sh -c "sleep 3 && npm start"
     environment:
       - NODE_ENV=production
       - PORT=3000
