@@ -1,6 +1,7 @@
 version: '3.8'
 services:
   webserver:
+    container_name: express_restapi
     restart: unless-stopped
     build: .
     command: sh -c "sleep 3 && npm start"
@@ -29,32 +30,34 @@ services:
       - node_networks
   # DATABASE SERVICE
   db:
-    image: postgres:13-alpine
-    restart: unless-stopped
-    ports:
-      - 5432:5432
+    container_name: pg_database
+    restart: always
+    image: postgres:latest
     environment:
       - POSTGRES_USER=restuwahyu13
       - POSTGRES_PASSWORD=restuwahyu13
       - POSTGRES_DB=auth
+    ports:
+      - 5432:5432
     volumes:
-      - database:/var/lib/postgresql/data:delegated
+      - pgdata:/var/lib/postgresql/data:delegated
     networks:
       - node_networks
   # STORAGE SERVICE
   redis:
-    image: redis:6.2.1-alpine
+    container_name: redis_storage
     restart: unless-stopped
+    image: redis:latest
     ports:
       - 6379:6379
     volumes:
-      - redis:/var/lib/redis/data:delegated
+      - rddata:/var/lib/redis/data:delegated
     networks:
       - node_networks
+# CREATE DOCKER VOLUME
+volumes:
+  pgdata:
+  rddata:
 # CREATE DOCKER NETWORK
 networks:
   node_networks:
-# CREATE DOCKER VOLUME
-volumes:
-  database:
-  redis:
