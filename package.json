@@ -4,7 +4,7 @@
 	"description": "coding test from agtran company",
 	"main": "server.js",
 	"files": [
-		"dists/**/*.js"
+		"dist/**/*.js"
 	],
 	"scripts": {
 		"client:start": "npm run serve --prefix client",
