@@ -24,7 +24,7 @@ services:
       - db
       - redis
     volumes:
-      - .:/app:cached
+      - .:/app
       - /app/node_modules
     networks:
       - node_networks
