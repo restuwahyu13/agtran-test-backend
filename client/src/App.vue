@@ -6,6 +6,9 @@
 			</div>
 			<ul class="navbar-nav ml-auto mr-5">
 				<li class="nav-item">
+					<router-link to="/register" class="nav-link active">Register</router-link>
+				</li>
+				<li class="nav-item">
 					<router-link to="/login" class="nav-link active">Login</router-link>
 				</li>
 			</ul>

@@ -9,8 +9,10 @@
     "installed": "npm install --silent"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "core-js": "^3.6.5",
+    "jsonwebtoken": "^8.5.1",
     "vue": "^3.0.0",
     "vue-router": "^4.0.4"
   },
