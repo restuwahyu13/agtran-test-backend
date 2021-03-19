@@ -82,6 +82,8 @@
 </template>
 
 <script>
+import { uniqueNumber } from '../utils/uniqueNumber'
+
 export default {
 	name: 'Register',
 	data: () => ({
@@ -100,13 +102,22 @@ export default {
 					email: this.email,
 					birdDate: this.birdDate,
 					password: this.password,
-					icNumber: Math.random()
+					icNumber: uniqueNumber()
 				})
 				.then((res) => {
 					alert(res.data.message)
 				})
 				.catch((error) => {
-					alert(error.response.data.message)
+					if (error.response.data.errors) {
+						this.status = error.response.data.status
+						const errors = error.response.data.errors
+						for (let i in errors) {
+							this.message = errors[i].msg
+						}
+					} else {
+						this.status = error.response.data.status
+						this.message = error.response.data.message
+					}
 				})
 		}
 	}

@@ -147,7 +147,7 @@ export const tempMailRegister = (to: string, token: string): IRegisterMail => {
                     </p>
                 <div class="text-content">
                     <button>
-                      <a href="${CLIENT_URL}/users/activation/${token}">Activation Account</a>
+                      <a href="${CLIENT_URL}/activation/${token}">Activation Account</a>
                     </button>
                     <div class="footer-logo">
                         <span class="footer">&copy; ${new Date().getFullYear()} Coding Test, Inc All Right Reserved</span>

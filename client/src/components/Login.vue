@@ -76,7 +76,16 @@ export default {
 					}
 				})
 				.catch((error) => {
-					alert(error.response.data.message)
+					if (error.response.data.errors) {
+						this.status = error.response.data.status
+						const errors = error.response.data.errors
+						for (let i in errors) {
+							this.message = errors[i].msg
+						}
+					} else {
+						this.status = error.response.data.status
+						this.message = error.response.data.message
+					}
 				})
 		}
 	}
