@@ -36,9 +36,7 @@
 								<div class="form-group">
 									<button type="submit" class="btn btn-dark form-control mt-2">Login</button>
 								</div>
-								<div class="form-group">
-									<button type="submit" class="btn btn-dark form-control mt-2">Login With Google</button>
-								</div>
+								<GoogleAuth />
 							</form>
 						</div>
 					</div>
@@ -50,6 +48,7 @@
 
 <script>
 import jwt from 'jsonwebtoken'
+// import GoogleAuth from './GoogleAuth'
 
 export default {
 	name: 'Login',
@@ -66,29 +65,31 @@ export default {
 				})
 				.then((res) => {
 					const decoded = jwt.decode(res.data.accessToken)
-					window.localStorage.setItem('users', decoded.email)
-					window.localStorage.setItem('accessToken', res.data.accessToken)
-
-					if (window.localStorage.getItem('users') && window.localStorage.getItem('accesstoken')) {
-						this.$route.push('/dashboard')
-					} else {
-						this.$router.push(this.$route.fullpath)
-					}
+					localStorage.setItem('users', decoded.email)
+					localStorage.setItem('accessToken', res.data.accessToken)
+					this.checkAuth()
 				})
 				.catch((error) => {
 					if (error.response.data.errors) {
 						this.status = error.response.data.status
 						const errors = error.response.data.errors
 						for (let i in errors) {
-							this.message = errors[i].msg
+							alert(errors[i].msg)
 						}
 					} else {
-						this.status = error.response.data.status
-						this.message = error.response.data.message
+						alert(error.response.data.message)
 					}
 				})
+		},
+		checkAuth() {
+			if (localStorage.getItem('users') && localStorage.getItem('accessToken')) {
+				this.$router.push('/')
+			} else {
+				this.$router.push('/login')
+			}
 		}
 	}
+	// components: [GoogleAuth]
 }
 </script>
 

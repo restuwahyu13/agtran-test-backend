@@ -1,23 +1,10 @@
 <template>
 	<div>
-		<div class="container mt-5 position-relative">
-			<div class="row mx-auto d-flex justify-content-center">
-				<div class="col-6">
-					<div class="card">
-						<div class="card-header">
-							<h4>Login With Google</h4>
-						</div>
-						<div class="body">
-							<form @submit.prevent="socialLogin">
-								<div class="form-group">
-									<button type="submit" class="btn btn-dark form-control mt-2">Login With Google</button>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
+		<form @submit="socialLogin" action="/auth/google">
+			<div class="form-group">
+				<button type="submit" class="btn btn-dark form-control mt-2">Login With Google</button>
 			</div>
-		</div>
+		</form>
 	</div>
 </template>
 
@@ -26,7 +13,15 @@ export default {
 	name: 'GoogleAuth',
 	methods: {
 		socialLogin() {
-			window.location.href = '/auth/google'
+			this.$http
+				.get(`/auth/google/response`)
+				.then((res) => {
+					window.localStorage.setItem('users', res.data.emails[0].value)
+					window.localStorage.setItem('accessToken', res.data.accessToken)
+				})
+				.catch((error) => {
+					alert(error.response.data.message)
+				})
 		}
 	}
 }
