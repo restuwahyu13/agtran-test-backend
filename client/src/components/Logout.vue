@@ -13,7 +13,7 @@ export default {
 			if (localStorage.getItem('users') && localStorage.getItem('accessToken')) {
 				localStorage.removeItem('users')
 				localStorage.removeItem('accessToken')
-				this.$router.push('/login')
+				this.$router.go('/login')
 			} else {
 				this.$router.push('/')
 			}

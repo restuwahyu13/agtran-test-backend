@@ -36,8 +36,8 @@
 								<div class="form-group">
 									<button type="submit" class="btn btn-dark form-control mt-2">Login</button>
 								</div>
-								<GoogleAuth />
 							</form>
+							<GoogleAuth />
 						</div>
 					</div>
 				</div>
@@ -48,7 +48,7 @@
 
 <script>
 import jwt from 'jsonwebtoken'
-// import GoogleAuth from './GoogleAuth'
+import GoogleAuth from './GoogleAuth'
 
 export default {
 	name: 'Login',
@@ -88,8 +88,8 @@ export default {
 				this.$router.push('/login')
 			}
 		}
-	}
-	// components: [GoogleAuth]
+	},
+	components: [GoogleAuth]
 }
 </script>
 
