@@ -10,7 +10,7 @@ router.get('/auth/google/callback', passport.authenticate('google'), (req: Reque
 	return res.status(200).redirect(`${urlRedirect}`)
 })
 
-router.post('/auth/google/response', (req: Request, res: Response) => {
+router.get('/auth/google/response', (req: Request, res: Response) => {
 	if (req.user) {
 		return res.status(200).json(req.user)
 	} else {

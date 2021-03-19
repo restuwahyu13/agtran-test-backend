@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 
 export const setAuth = (type, payload) => {
-	if (type == 'local') {
+	if (type == 'local' && payload) {
 		const decoded = jwt.decode(payload.data.accessToken)
 		localStorage.setItem('users', decoded.email)
 		localStorage.setItem('accessToken', payload.data.accessToken)
@@ -25,6 +25,8 @@ export const isNotAuth = () => {
 	if (isAuth) {
 		localStorage.removeItem('users')
 		localStorage.removeItem('accessToken')
+		sessionStorage.removeItem('users')
+		sessionStorage.removeItem('accessToken')
 	} else {
 		return false
 	}

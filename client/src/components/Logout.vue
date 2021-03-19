@@ -14,6 +14,7 @@ export default {
 		destroyStorage() {
 			if (isAuthLocal()) {
 				isNotAuth()
+				window.localStorage.setItem('loading', false)
 				this.$router.go('/login')
 			} else {
 				this.$router.push('/')
