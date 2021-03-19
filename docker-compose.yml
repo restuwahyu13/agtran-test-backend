@@ -8,7 +8,7 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=3000
-      - URL_PROD=http://localhost:3000/api/v1
+      - URL_PROD=http://localhost:3000
       - PG_URI_PROD=postgres://restuwahyu13:restuwahyu13@db:5432/auth
       - REDIS_HOST=redis
       - REDIS_PORT=6379
