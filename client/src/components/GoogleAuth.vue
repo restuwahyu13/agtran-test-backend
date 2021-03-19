@@ -14,7 +14,7 @@ import { setAuth, isAuthLocal } from '../utils/auth'
 export default {
 	name: 'GoogleAuth',
 	mounted() {
-		this.$http.get(`/auth/google/verify`).then((res) => {
+		this.$http.post(`/auth/google/response`).then((res) => {
 			if (res.data) {
 				setAuth('social', res)
 				this.checkAuth()
