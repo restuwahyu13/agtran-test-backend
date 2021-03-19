@@ -83,7 +83,7 @@ export default {
 		},
 		checkAuth() {
 			if (localStorage.getItem('users') && localStorage.getItem('accessToken')) {
-				this.$router.push('/')
+				this.$router.go('/')
 			} else {
 				this.$router.push('/login')
 			}

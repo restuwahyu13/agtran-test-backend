@@ -14,6 +14,9 @@
 				<li class="nav-item" v-if="!isAuth">
 					<router-link to="/login" class="nav-link active">Login</router-link>
 				</li>
+				<li class="nav-item" v-if="isAuth">
+					<router-link to="/logout" class="nav-link active">Logout</router-link>
+				</li>
 				>
 			</ul>
 		</nav>

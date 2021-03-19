@@ -3,6 +3,7 @@ import Dashboard from './components/Dashboard'
 import RegisterAuth from './components/Register'
 import LoginAuth from './components/Login'
 import ActivationAuth from './components/Activation'
+import LogoutAuth from './components/Logout'
 
 const routerHistory = createWebHistory()
 const router = createRouter({
@@ -44,7 +45,8 @@ const router = createRouter({
 				}
 			}
 		},
-		{ name: 'activation', path: '/activation/:token', component: ActivationAuth }
+		{ name: 'activation', path: '/activation/:token', component: ActivationAuth },
+		{ name: 'logout', path: '/logout', component: LogoutAuth }
 	]
 })
 
