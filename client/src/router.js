@@ -5,6 +5,8 @@ import LoginAuth from './components/Login'
 import ActivationAuth from './components/Activation'
 import LogoutAuth from './components/Logout'
 
+import { isAuthLocal } from './utils/auth'
+
 const routerHistory = createWebHistory()
 const router = createRouter({
 	history: routerHistory,
@@ -14,7 +16,7 @@ const router = createRouter({
 			path: '/',
 			component: Dashboard,
 			beforeEnter(to, from, next) {
-				if (!localStorage.getItem('users') && !localStorage.getItem('accessToken')) {
+				if (!isAuthLocal()) {
 					next({ path: '/login' })
 				} else {
 					next()
@@ -26,7 +28,7 @@ const router = createRouter({
 			path: '/register',
 			component: RegisterAuth,
 			beforeEnter(to, from, next) {
-				if (!localStorage.getItem('users') && !localStorage.getItem('accessToken')) {
+				if (!isAuthLocal()) {
 					next()
 				} else {
 					next({ path: '/' })
@@ -38,7 +40,7 @@ const router = createRouter({
 			path: '/login',
 			component: LoginAuth,
 			beforeEnter(to, from, next) {
-				if (!localStorage.getItem('users') && !localStorage.getItem('accessToken')) {
+				if (!isAuthLocal()) {
 					next()
 				} else {
 					next({ path: '/' })

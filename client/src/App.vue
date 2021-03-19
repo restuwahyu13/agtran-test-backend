@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import { isAuthLocal } from './utils/auth'
+
 export default {
 	name: 'App',
 	data: () => ({
@@ -35,7 +37,7 @@ export default {
 	},
 	methods: {
 		isAuthenticated() {
-			if (!localStorage.getItem('users') && !localStorage.getItem('accessToken')) {
+			if (!isAuthLocal()) {
 				this.isAuth = false
 			} else {
 				this.isAuth = true

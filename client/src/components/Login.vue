@@ -47,8 +47,8 @@
 </template>
 
 <script>
-import jwt from 'jsonwebtoken'
 import GoogleAuth from './GoogleAuth'
+import { setAuth, isAuthLocal } from '../utils/auth'
 
 export default {
 	name: 'Login',
@@ -64,10 +64,10 @@ export default {
 					password: this.password
 				})
 				.then((res) => {
-					const decoded = jwt.decode(res.data.accessToken)
-					localStorage.setItem('users', decoded.email)
-					localStorage.setItem('accessToken', res.data.accessToken)
-					this.checkAuth()
+					if (res.data) {
+						setAuth('local', res)
+						this.checkAuth()
+					}
 				})
 				.catch((error) => {
 					if (error.response.data.errors) {
@@ -82,14 +82,14 @@ export default {
 				})
 		},
 		checkAuth() {
-			if (localStorage.getItem('users') && localStorage.getItem('accessToken')) {
+			if (isAuthLocal()) {
 				this.$router.go('/')
 			} else {
 				this.$router.push('/login')
 			}
 		}
 	},
-	components: [GoogleAuth]
+	components: { GoogleAuth }
 }
 </script>
 

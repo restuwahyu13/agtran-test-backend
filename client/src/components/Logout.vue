@@ -3,6 +3,8 @@
 </template>
 
 <script>
+import { isNotAuth, isAuthLocal } from '../utils/auth'
+
 export default {
 	name: 'Logout',
 	mounted() {
@@ -10,9 +12,8 @@ export default {
 	},
 	methods: {
 		destroyStorage() {
-			if (localStorage.getItem('users') && localStorage.getItem('accessToken')) {
-				localStorage.removeItem('users')
-				localStorage.removeItem('accessToken')
+			if (isAuthLocal()) {
+				isNotAuth()
 				this.$router.go('/login')
 			} else {
 				this.$router.push('/')
