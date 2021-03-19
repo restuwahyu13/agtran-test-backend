@@ -4,9 +4,9 @@ export const uniqueNumber = () => {
 	let numb = 0
 	if (random.toString().split(' ').length < 11) {
 		const newNumb = random.toString().replace('.', '')
-		numb = +newNumb
+		numb = newNumb
 	} else {
-		numb = +random
+		numb = random
 	}
 	return numb
 }

@@ -29,9 +29,9 @@ export const registerValidator = (): ValidationChain[] => [
 	check('password').notEmpty().withMessage('password is required'),
 	check('password').isLength({ min: 8 }).withMessage('password must be at least 8 characters'),
 	check('birdDate').notEmpty().withMessage('birdDate is required'),
-	check('birdDate').isDate({ format: 'mm-dd-yyyy' }).withMessage('birdDate is not valid'),
+	check('birdDate').isDate().withMessage('birdDate is not valid'),
 	check('icNumber').notEmpty().withMessage('icNumber is required'),
-	check('icNumber').isLength({ min: 10, max: 10 }).withMessage('icNumber number must be at least 10 characters'),
+	check('icNumber').isLength({ min: 8, max: 15 }).withMessage('icNumber number must be at least 10 characters'),
 	check('icNumber').isNumeric().withMessage('icNumber must be a number')
 ]
 

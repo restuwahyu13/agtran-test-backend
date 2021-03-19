@@ -46,7 +46,7 @@
 									/>
 								</div>
 								<div class="form-group">
-									<label for="birdDate">birdDate</label>
+									<label for="birdDate">birddate</label>
 									<input
 										type="date"
 										v-model="birdDate"
@@ -58,7 +58,7 @@
 									/>
 								</div>
 								<div class="form-group">
-									<label for="password">Password</label>
+									<label for="password">password</label>
 									<input
 										type="password"
 										v-model="password"
@@ -96,7 +96,7 @@ export default {
 	methods: {
 		handleSubmit() {
 			this.$http
-				.post('/api/v1/users/auth/login', {
+				.post('/api/v1/users/auth/register', {
 					firstName: this.firstName,
 					lastName: this.lastName,
 					email: this.email,
@@ -109,14 +109,12 @@ export default {
 				})
 				.catch((error) => {
 					if (error.response.data.errors) {
-						this.status = error.response.data.status
 						const errors = error.response.data.errors
 						for (let i in errors) {
-							this.message = errors[i].msg
+							alert(errors[i].msg)
 						}
 					} else {
-						this.status = error.response.data.status
-						this.message = error.response.data.message
+						alert(error.response.data.message)
 					}
 				})
 		}
